@@ -19,10 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { saveApiRecipesToDb } = require('./src/helpers/saveApiRecipesToDb.js');
+const { saveApiRecipesToDb, saveDietsToDb } = require('./src/helpers/saveToDb');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+    saveDietsToDb();
     // saveApiRecipesToDb();
     server.listen(3001, () => {
         console.log('%s listening at 3001'); // eslint-disable-line no-console

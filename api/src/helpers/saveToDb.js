@@ -1,4 +1,4 @@
-const { Recipe } = require('../db');
+const { Recipe, Diet } = require('../db');
 const { recipes } = require('../utils/data');
 
 const saveApiRecipesToDb = async () => {
@@ -40,6 +40,27 @@ const saveApiRecipesToDb = async () => {
     await Promise.all(recipesPms);
 };
 
+const saveDietsToDb = async () => {
+    const newDiets = [
+        'Gluten Free',
+        'Ketogenic',
+        'Vegetarian',
+        'Lacto-Vegetarian',
+        'Ovo-Vegetarian',
+        'Vegan',
+        'Pescetarian',
+        'Paleo',
+        'Primal',
+        'Low',
+        'FODMAP',
+        'Whole30',
+    ];
+    const dietsPms = newDiets.map((d) => {
+        return Diet.create({ name: d });
+    });
+    await Promise.all(dietsPms);
+};
 module.exports = {
     saveApiRecipesToDb,
+    saveDietsToDb,
 };
