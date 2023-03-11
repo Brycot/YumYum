@@ -48,11 +48,11 @@ module.exports = (sequelize) => {
                 allowNull: false,
             },
             summary: {
-                type: DataTypes.STRING,
+                type: DataTypes.TEXT,
                 allowNull: false,
             },
             cuisines: {
-                type: DataTypes.STRING,
+                type: DataTypes.ARRAY(DataTypes.STRING),
                 allowNull: false,
             },
             dishTypes: {

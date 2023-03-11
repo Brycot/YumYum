@@ -12,7 +12,20 @@ module.exports = (sequelize) => {
                 primaryKey: true,
             },
             name: {
-                type: DataTypes.STRING,
+                type: DataTypes.ENUM(
+                    'Gluten Free',
+                    'Ketogenic',
+                    'Vegetarian',
+                    'Lacto-Vegetarian',
+                    'Ovo-Vegetarian',
+                    'Vegan',
+                    'Pescetarian',
+                    'Paleo',
+                    'Primal',
+                    'Low',
+                    'FODMAP',
+                    'Whole30'
+                ),
                 allowNull: false,
             },
         },
