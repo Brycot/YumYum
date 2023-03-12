@@ -1,6 +1,6 @@
 const { response, request } = require('express');
 const { getInfo, getInfoById } = require('../helpers/getInfo');
-const { Recipe } = require('../db');
+const { Recipe, Diet } = require('../db');
 
 const recipesGet = async (req = request, res = response) => {
     try {
@@ -31,12 +31,14 @@ const recipesPost = async (req = request, res = response) => {
         healthScore,
         title,
         image,
+        diets,
         summary,
         cuisines,
         dishTypes,
         steps,
     } = req.body;
     try {
+        // añadimos el registo al modelo Recipe
         const recipe = await Recipe.create({
             id,
             glutenFree,
@@ -53,6 +55,8 @@ const recipesPost = async (req = request, res = response) => {
             dishTypes,
             steps,
         });
+        // Añadimos la relación de diets
+        await recipe.addDiet(diets);
         res.status(200).json(recipe);
     } catch (error) {
         res.status(400).json({ error: error.message });
