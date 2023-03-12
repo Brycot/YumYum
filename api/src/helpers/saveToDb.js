@@ -43,6 +43,7 @@ const saveApiRecipesToDb = async () => {
 const saveDietsToDb = async () => {
     const newDiets = [
         'gluten free',
+        'dairy free',
         'ketogenic',
         'vegetarian',
         'lacto-vegetarian',
@@ -51,8 +52,7 @@ const saveDietsToDb = async () => {
         'pescetarian',
         'paleo',
         'primal',
-        'low',
-        'fodmap',
+        'low fodmap',
         'whole30',
     ];
     const dietsPms = newDiets.map((d) => {

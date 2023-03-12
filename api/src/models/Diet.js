@@ -23,8 +23,7 @@ module.exports = (sequelize) => {
                     'pescetarian',
                     'paleo',
                     'primal',
-                    'low',
-                    'fodmap',
+                    'low fodmap',
                     'whole30'
                 ),
                 allowNull: false,
