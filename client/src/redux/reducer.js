@@ -112,6 +112,8 @@ const rootReducer = (state = initialState, action) => {
                 login: true,
             };
         }
+        default:
+            return state;
     }
 };
 

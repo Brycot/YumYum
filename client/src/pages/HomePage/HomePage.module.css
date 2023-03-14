@@ -1,1 +1,11 @@
-
+main {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 200px 1fr 200px;
+    grid-template-areas:
+        'header header'
+        'filters recipes'
+        'footer footer';
+}

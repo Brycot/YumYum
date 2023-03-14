@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import { ItemRecipe } from '../ItemRecipe';
 
 import styled from './RecipesContainer.module.css';
@@ -22,6 +22,7 @@ export const RecipesContainer = ({ filteredRecipes, currentPage, itemsPerPage })
                             title={recipe.title}
                             cheap={recipe.cheap}
                             servings={recipe.servings}
+                            dietas={recipe.dietas}
                         />
                     ))}
         </section>

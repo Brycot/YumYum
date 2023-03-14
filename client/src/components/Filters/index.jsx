@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     getAllCuisines,
@@ -9,8 +9,10 @@ import {
     sortByName,
     sortByScore,
 } from '../../redux/actions';
+
+import styles from './Filters.module.css';
+
 export const Filters = () => {
-    // const [sort, setSort] = useState(false);
     const dispatch = useDispatch();
     const cuisines = useSelector((state) => state?.cuisines);
     const diets = useSelector((state) => state?.diets);
@@ -18,31 +20,26 @@ export const Filters = () => {
     const handleSort = (event) => {
         const selectedValue = event.target.value;
         dispatch(sortByName(selectedValue));
-        // setSort(!sort);
     };
     const handleSortByCuisine = (event) => {
         const selectedValue = event.target.value;
         dispatch(sortByCuisine(selectedValue));
-        // setSort(!sort);
     };
     const handleSortByDiet = (event) => {
         const selectedValue = event.target.value;
         dispatch(sortByDiet(selectedValue));
-        // setSort(!sort);
     };
     const handleSortByScore = (event) => {
         const selectedValue = event.target.value;
         dispatch(sortByScore(selectedValue));
-        // setSort(!sort);
     };
-    console.log('cdc');
     useEffect(() => {
         dispatch(getAllRecipes());
         dispatch(getAllCuisines());
         dispatch(getAllDiets());
     }, []);
     return (
-        <section>
+        <section className={styles.filtersContainer}>
             <div>
                 <label htmlFor="sort">Sort</label>
                 <select id="sort" name="Sort" onChange={handleSort}>
