@@ -61,7 +61,10 @@ module.exports = (sequelize) => {
             },
             steps: {
                 type: DataTypes.ARRAY(DataTypes.JSON),
-                allowNull: false,
+                // allowNull: false,
+            },
+            dietas: {
+                type: DataTypes.ARRAY(DataTypes.STRING),
             },
         },
         {

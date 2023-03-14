@@ -19,12 +19,13 @@ module.exports = (sequelize) => {
                     'vegetarian',
                     'lacto-vegetarian',
                     'ovo-vegetarian',
+                    'lacto ovo vegetarian',
                     'vegan',
-                    'pescetarian',
+                    'pescatarian',
                     'paleo',
                     'primal',
                     'low fodmap',
-                    'whole30'
+                    'whole 30'
                 ),
                 allowNull: false,
             },

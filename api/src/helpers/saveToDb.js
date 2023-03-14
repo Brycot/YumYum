@@ -1,4 +1,4 @@
-const { Recipe, Diet } = require('../db');
+const { Recipe, Diet, Cuisine } = require('../db');
 const { recipes } = require('../utils/data');
 
 const saveApiRecipesToDb = async () => {
@@ -18,6 +18,7 @@ const saveApiRecipesToDb = async () => {
             cuisines,
             dishTypes,
             analyzedInstructions,
+            diets,
         }) => {
             return Recipe.create({
                 id,
@@ -34,6 +35,7 @@ const saveApiRecipesToDb = async () => {
                 cuisines,
                 dishTypes,
                 steps: analyzedInstructions[0]?.steps,
+                dietas: diets,
             });
         }
     );
@@ -48,19 +50,56 @@ const saveDietsToDb = async () => {
         'vegetarian',
         'lacto-vegetarian',
         'ovo-vegetarian',
+        'lacto ovo vegetarian',
         'vegan',
-        'pescetarian',
+        'pescatarian',
         'paleo',
         'primal',
         'low fodmap',
-        'whole30',
+        'whole 30',
     ];
     const dietsPms = newDiets.map((d) => {
         return Diet.create({ name: d });
     });
     await Promise.all(dietsPms);
 };
+
+const saveCuisinesToDb = async () => {
+    const newCuisines = [
+        'African',
+        'American',
+        'British',
+        'Cajun',
+        'Caribbean',
+        'Chinese',
+        'Eastern European',
+        'European',
+        'French',
+        'German',
+        'Greek',
+        'Indian',
+        'Irish',
+        'Italian',
+        'Japanese',
+        'Jewish',
+        'Korean',
+        'Latin American',
+        'Mediterranean',
+        'Mexican',
+        'Middle Eastern',
+        'Nordic',
+        'Southern',
+        'Spanish',
+        'Thai',
+        'Vietname',
+    ];
+    const cuisinesPms = newCuisines.map((d) => {
+        return Cuisine.create({ name: d });
+    });
+    await Promise.all(cuisinesPms);
+};
 module.exports = {
     saveApiRecipesToDb,
     saveDietsToDb,
+    saveCuisinesToDb,
 };
