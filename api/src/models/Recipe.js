@@ -11,18 +11,6 @@ module.exports = (sequelize) => {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
             },
-            glutenFree: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-            },
-            cheap: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-            },
-            lowFodmap: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-            },
             pricePerServing: {
                 type: DataTypes.FLOAT,
                 allowNull: false,

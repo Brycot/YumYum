@@ -7,3 +7,4 @@ export * from './SearchBar';
 export * from './Browser';
 export * from './NoExist';
 export * from './CreateButton';
+export * from './FormCreate';

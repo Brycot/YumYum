@@ -5,9 +5,6 @@ const saveApiRecipesToDb = async () => {
     const recipesPms = recipes.results.map(
         ({
             id,
-            glutenFree,
-            cheap,
-            lowFodmap,
             pricePerServing,
             readyInMinutes,
             servings,
@@ -22,9 +19,6 @@ const saveApiRecipesToDb = async () => {
         }) => {
             return Recipe.create({
                 id,
-                glutenFree,
-                cheap,
-                lowFodmap,
                 pricePerServing,
                 readyInMinutes,
                 servings,

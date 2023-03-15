@@ -7,6 +7,7 @@ import {
     Browser,
     SearchBar,
     CreateButton,
+    FormCreate,
 } from '../../components';
 import { getAllRecipes } from '../../redux/actions';
 import { usePagination } from '../../hooks';
@@ -17,6 +18,7 @@ export const HomePage = () => {
     const dispatch = useDispatch();
 
     const filteredRecipes = useSelector((state) => state.filteredRecipes);
+    const onCreate = useSelector((state) => state.onCreate);
     const { currentPage, nextPage, previousPage, maxPages, itemsPerPage } =
         usePagination(9);
 
@@ -42,6 +44,9 @@ export const HomePage = () => {
                 currentPage={currentPage}
                 itemsPerPage={itemsPerPage}
             />
+            {onCreate && (
+                    <FormCreate />
+                )}
         </main>
     );
 };

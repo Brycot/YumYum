@@ -15,8 +15,27 @@ export const DetailPage = () => {
     }, []);
     return (
         <main>
-            <img src={image} alt="" />
-            <h3>{title}</h3>
+            <h1>{title}</h1>
+            <div>
+                <p>Health Score: </p>
+                <p>150</p>
+            </div>
+            <p>Steps</p>
+            <section>
+                <p>1</p>
+                <p></p>
+            </section>
+            <img src="" alt="" />
+            <section>
+                <div>
+                    <p>20 minutes</p>
+                    <p>mexican</p>
+                </div>
+                <div>
+                    <p>ingredients</p>
+                    <p>serves: </p>
+                </div>
+            </section>
         </main>
     );
 };

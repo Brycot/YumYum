@@ -9,6 +9,7 @@ import {
     GET_SORT_DIET,
     GET_SORT_SCORE,
     DELETE_FILTERS,
+    TOGGLE_CREATE,
 } from './actions';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
     filteredRecipes: [],
     diets: [],
     cuisines: [],
+    onCreate: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -114,6 +116,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredRecipes: state.allRecipes,
+            };
+        case TOGGLE_CREATE:
+            return {
+                ...state,
+                onCreate: !state.onCreate,
             };
         case LOGIN: {
             return {

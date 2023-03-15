@@ -17,9 +17,6 @@ const getInfoById = async (id) => {
         // const resultApi = await getApiInfoById(id);
         // if (resultApi) {
         //     const receta = {
-        //         glutenFree: resultApi.glutenFree,
-        //         cheap: resultApi.cheap,
-        //         lowFodmap: resultApi.lowFodmap,
         //         pricePerServing: resultApi.pricePerServing,
         //         readyInMinutes: resultApi.readyInMinutes,
         //         servings: resultApi.servings,

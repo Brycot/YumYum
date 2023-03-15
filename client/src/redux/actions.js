@@ -9,6 +9,7 @@ export const GET_SORT_CUISINE = 'GET_SORT_CUISINE';
 export const GET_SORT_DIET = 'GET_SORT_DIET';
 export const GET_SORT_SCORE = 'GET_SORT_SCORE';
 export const DELETE_FILTERS = 'DELETE_FILTERS';
+export const TOGGLE_CREATE = 'TOGGLE_CREATE';
 
 // actions gets
 export const getAllRecipes = () => async (dispatch) => {
