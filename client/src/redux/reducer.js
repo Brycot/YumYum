@@ -8,6 +8,7 @@ import {
     GET_SORT_CUISINE,
     GET_SORT_DIET,
     GET_SORT_SCORE,
+    DELETE_FILTERS,
 } from './actions';
 
 const initialState = {
@@ -43,6 +44,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipe: action.payload,
             };
+
         case GET_SORT:
             const sort =
                 action.payload === 'asc'
@@ -67,11 +69,11 @@ const rootReducer = (state = initialState, action) => {
             const sortScore =
                 action.payload === 'asc'
                     ? [...state.filteredRecipes].sort(
-                          (a, b) => a.healthScore - b.healthScore
+                          (a, b) => b.healthScore - a.healthScore
                       )
                     : action.payload === 'desc'
                     ? [...state.filteredRecipes].sort(
-                          (a, b) => b.healthScore - a.healthScore
+                          (a, b) => a.healthScore - b.healthScore
                       )
                     : [...state.allRecipes];
             return {
@@ -92,6 +94,7 @@ const rootReducer = (state = initialState, action) => {
                     recipe.cuisines.includes(action.payload)
                 ),
             };
+
         case GET_SORT_DIET:
             if (action.payload === 'All') {
                 return {
@@ -105,6 +108,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredRecipes: filtered,
+            };
+
+        case DELETE_FILTERS:
+            return {
+                ...state,
+                filteredRecipes: state.allRecipes,
             };
         case LOGIN: {
             return {

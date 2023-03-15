@@ -1,13 +1,20 @@
 import React from 'react';
 
 import { ItemRecipe } from '../ItemRecipe';
+import { NoExist } from '../NoExist';
 
 import styled from './RecipesContainer.module.css';
 
-export const RecipesContainer = ({ filteredRecipes, currentPage, itemsPerPage }) => {
-
+export const RecipesContainer = ({
+    filteredRecipes,
+    currentPage,
+    itemsPerPage,
+}) => {
     return (
         <section className={styled.container}>
+            {filteredRecipes.length < 1 && (
+                <NoExist />
+            )}
             {filteredRecipes &&
                 filteredRecipes
                     .slice(

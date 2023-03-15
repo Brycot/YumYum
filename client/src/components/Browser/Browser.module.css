@@ -1,0 +1,10 @@
+.browser {
+    width: 95%;
+    height: 70px;
+    grid-area: browser;
+    justify-self: center;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 200px 200px;
+    gap: 16px;
+}

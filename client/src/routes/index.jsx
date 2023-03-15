@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { HomePage, LandingPage } from '../pages';
+import { DetailPage, HomePage, LandingPage } from '../pages';
 
 export const AppRoutes = () => {
     return (
@@ -9,8 +9,11 @@ export const AppRoutes = () => {
                 <Route exact path="/">
                     <HomePage />
                 </Route>
-                <Route>
-                    <LandingPage path="/landing" />
+                <Route path="/landing">
+                    <LandingPage />
+                </Route>
+                <Route path="/recipes/:recipeId">
+                    <DetailPage />
                 </Route>
             </Switch>
         </>

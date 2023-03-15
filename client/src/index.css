@@ -21,3 +21,12 @@ code {
 footer {
     height: 60px;
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #20222c;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #abbbc2;
+    border-radius: 5px;
+}

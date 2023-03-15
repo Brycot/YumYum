@@ -10,13 +10,21 @@ export const Pagination = ({
 }) => {
     return (
         <div className={styles.paginationContainer}>
-            <button disabled={currentPage === 1} onClick={previousPage}>
+            <button
+                className={styles.button}
+                disabled={currentPage === 1 || maxPages === 0}
+                onClick={previousPage}
+            >
                 {'<'}
             </button>
-            <span>
-                {currentPage} of {maxPages}
+            <span className={styles.text}>
+                {maxPages === 0 ? '0' : currentPage} of {maxPages}
             </span>
-            <button disabled={currentPage === maxPages} onClick={nextPage}>
+            <button
+                className={styles.button}
+                disabled={currentPage === maxPages || maxPages === 0}
+                onClick={nextPage}
+            >
                 {'>'}
             </button>
         </div>

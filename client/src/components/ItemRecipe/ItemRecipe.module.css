@@ -9,7 +9,10 @@
     align-items: center;
     justify-content: center;
 }
-
+.itemContainer:hover {
+    box-shadow: 0px 0px 10px 0px #ea7c697a;
+    transition: all 0.2s ease;
+}
 .imgInfo {
     position: relative;
     min-width: 190px;
@@ -77,8 +80,9 @@
     font-weight: 500;
 }
 .dietsContainer span {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: lighter;
+    color: #abbbc2;
 }
 .dietsContainer div {
     width: 100%;

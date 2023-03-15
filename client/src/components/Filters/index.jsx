@@ -1,56 +1,42 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-    getAllCuisines,
-    getAllDiets,
-    getAllRecipes,
-    sortByCuisine,
-    sortByDiet,
-    sortByName,
-    sortByScore,
-} from '../../redux/actions';
+import React from 'react';
+import { useFilters } from '../../hooks';
 
 import styles from './Filters.module.css';
 
 export const Filters = () => {
-    const dispatch = useDispatch();
-    const cuisines = useSelector((state) => state?.cuisines);
-    const diets = useSelector((state) => state?.diets);
+    const {
+        cuisines,
+        diets,
+        handleSort,
+        handleSortByCuisine,
+        handleSortByDiet,
+        handleSortByScore,
+        handleDeleteFilters,
+    } = useFilters();
 
-    const handleSort = (event) => {
-        const selectedValue = event.target.value;
-        dispatch(sortByName(selectedValue));
-    };
-    const handleSortByCuisine = (event) => {
-        const selectedValue = event.target.value;
-        dispatch(sortByCuisine(selectedValue));
-    };
-    const handleSortByDiet = (event) => {
-        const selectedValue = event.target.value;
-        dispatch(sortByDiet(selectedValue));
-    };
-    const handleSortByScore = (event) => {
-        const selectedValue = event.target.value;
-        dispatch(sortByScore(selectedValue));
-    };
-    useEffect(() => {
-        dispatch(getAllRecipes());
-        dispatch(getAllCuisines());
-        dispatch(getAllDiets());
-    }, []);
     return (
         <section className={styles.filtersContainer}>
-            <div>
-                <label htmlFor="sort">Sort</label>
-                <select id="sort" name="Sort" onChange={handleSort}>
+            <div className={styles.filterContainer}>
+                <label className={styles.label} htmlFor="sort">
+                    Sort
+                </label>
+                <select
+                    className={styles.select}
+                    id="sort"
+                    name="Sort"
+                    onChange={handleSort}
+                >
                     <option value="sort">[A-Z]</option>
                     <option value="asc">Name (A-Z)</option>
                     <option value="desc">Name (Z-A)</option>
                 </select>
             </div>
-            <div>
-                <label htmlFor="origin">Origin</label>
+            <div className={styles.filterContainer}>
+                <label className={styles.label} htmlFor="origin">
+                    Origin
+                </label>
                 <select
+                    className={styles.select}
                     id="origin"
                     name="origin"
                     onChange={handleSortByCuisine}
@@ -64,9 +50,16 @@ export const Filters = () => {
                         ))}
                 </select>
             </div>
-            <div>
-                <label htmlFor="Diets">Diet Type</label>
-                <select id="Diets" name="Diets" onChange={handleSortByDiet}>
+            <div className={styles.filterContainer}>
+                <label className={styles.label} htmlFor="Diets">
+                    Diet Type
+                </label>
+                <select
+                    className={styles.select}
+                    id="diets"
+                    name="diets"
+                    onChange={handleSortByDiet}
+                >
                     <option value="All">All</option>
                     {diets &&
                         diets.map((diet, i) => (
@@ -77,16 +70,23 @@ export const Filters = () => {
                 </select>
             </div>
 
-            <div>
-                <label htmlFor="Diets">Health Score</label>
-                <select id="Diets" name="Diets" onChange={handleSortByScore}>
+            <div className={styles.filterContainer}>
+                <label className={styles.label} htmlFor="Diets">
+                    Health Score
+                </label>
+                <select
+                    className={styles.select}
+                    id="healthScore"
+                    name="healthScore"
+                    onChange={handleSortByScore}
+                >
                     <option value="All">All</option>
                     <option value="asc">Highest (↑)</option>
                     <option value="desc">Lowest (↓)</option>
                 </select>
             </div>
 
-            <button>
+            <button onClick={handleDeleteFilters} className={styles.button}>
                 <span>Delete Filters</span>
             </button>
         </section>

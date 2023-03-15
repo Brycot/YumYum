@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.container h3,
+.container h4 {
+    margin: 0;
+}
+.container span {
+    color: #ea7c69;
+}

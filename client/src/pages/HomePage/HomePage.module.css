@@ -1,11 +1,12 @@
-main {
+.main {
     width: 100%;
     height: auto;
     display: grid;
     grid-template-columns: 300px 1fr;
-    grid-template-rows: 200px 1fr 200px;
+    grid-template-rows: 200px 70px 1fr 200px;
     grid-template-areas:
         'header header'
+        'filters browser'
         'filters recipes'
         'footer footer';
 }
