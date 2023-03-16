@@ -12,6 +12,7 @@ import {
     TOGGLE_CREATE,
     IS_LOADING,
     CREATE_RECIPE,
+    CLOSE_MODAL,
 } from './actions';
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
     onCreate: false,
     onLoading: false,
     onError: '',
+    created: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -135,8 +137,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 onLoading: false,
-                allRecipes: [...state.allRecipes, action.payload],
-                filteredRecipes: [...state.allRecipes, action.payload],
+                created: true,
+            };
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                onError: '',
+                created: false,
             };
         case LOGIN: {
             return {

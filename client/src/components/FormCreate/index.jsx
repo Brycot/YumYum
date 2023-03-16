@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { createRecipe } from '../../redux/actions';
-import { Input } from '../Input';
 
 import styles from './FormCreate.module.css';
 //Estado inicial del formulario
@@ -17,6 +16,7 @@ const formData = {
     cuisines: [],
     diets: [],
 };
+const stepsData = [];
 //Validaciones por cada campo del formulario
 const formValidations = {
     title: [
@@ -40,6 +40,7 @@ const formValidations = {
 };
 
 export const FormCreate = () => {
+    const [nSteps, setNSteps] = useState(2);
     const [submited, setSubmited] = useState(false);
     const dispatch = useDispatch();
     const cuisines = useSelector((state) => state?.cuisines);
@@ -69,15 +70,22 @@ export const FormCreate = () => {
         summaryValid,
         dietsValid,
     } = useForm(formData, formValidations);
+
+    const { formState: formStepsState, onInputChange: onStepChange } =
+        useForm(stepsData);
     const onClose = () => {
         dispatch({ type: 'TOGGLE_CREATE' });
     };
     const onSubmit = (event) => {
         event.preventDefault();
-        setSubmited(true);
-        if (!isformValid) return;
-        dispatch(createRecipe(formState));
-        dispatch({ type: 'TOGGLE_CREATE' });
+        console.log(formStepsState);
+        // setSubmited(true);
+        // if (!isformValid) return;
+        // dispatch(createRecipe(formState));
+        // dispatch({ type: 'TOGGLE_CREATE' });
+    };
+    const addStep = () => {
+        setNSteps(nSteps + 1);
     };
     return (
         <div className={styles.container}>
@@ -89,6 +97,7 @@ export const FormCreate = () => {
                 >
                     x
                 </button>
+                {/* column recipe info */}
                 <div className={styles.Container}>
                     <label className={styles.label}>Name</label>
                     <input
@@ -191,6 +200,37 @@ export const FormCreate = () => {
                         <p className={styles.errorText}>{healthScoreValid}</p>
                     )}
                 </div>
+                {/* Column steps */}
+                <div className={`${styles.Container} ${styles.stepsContainer}`}>
+                    {Array.from({ length: nSteps }).map((s, i) => (
+                        <div className={styles.step} key={i}>
+                            <label className={styles.label}>Paso {i + 1}</label>
+                            <input
+                                className={styles.input}
+                                name={`step${i + 1}-description`}
+                                type="text"
+                                onChange={onStepChange}
+                                placeholder="Description"
+                            />
+                            <input
+                                className={styles.input}
+                                name={`step${i + 1}-ingredients`}
+                                type="text"
+                                onChange={onStepChange}
+                                placeholder="Ingredients"
+                            />
+                        </div>
+                    ))}
+
+                    <button
+                        className={`${styles.button} ${styles.buttonAdd}`}
+                        onClick={addStep}
+                        type="button"
+                    >
+                        Add Step
+                    </button>
+                </div>
+                {/* Column image and create recipe */}
                 <div className={styles.Container}>
                     <label className={styles.label}>Image Url</label>
                     <input

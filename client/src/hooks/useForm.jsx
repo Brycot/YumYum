@@ -13,10 +13,21 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
+        if (!name.includes('step')) {
+            setFormState({
+                ...formState,
+                [name]: value,
+            });
+            return;
+        }
+        const [stepNumber, modify] = name.split('-');
+        const newState = formState;
+        newState[stepNumber] = {
+            ...newState[stepNumber],
+            step: stepNumber[4],
+            [modify]: value,
+        };
+        setFormState(newState);
     };
 
     const onSelectChange = ({ target }) => {

@@ -15,6 +15,7 @@ export const DELETE_FILTERS = 'DELETE_FILTERS';
 export const IS_LOADING = 'IS_LOADING';
 export const TOGGLE_CREATE = 'TOGGLE_CREATE';
 export const TOGGLE_ERROR = 'TOGGLE_CREATE';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // actions gets
 export const getAllRecipes = () => async (dispatch) => {

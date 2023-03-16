@@ -7,7 +7,7 @@ export const SearchBar = () => {
         <form className={styles.form}>
             <input
                 className={styles.inputSearch}
-                placeholder="Colombia"
+                placeholder="Search recipes..."
                 type="text"
             />
             <button className={styles.button} type="submit">

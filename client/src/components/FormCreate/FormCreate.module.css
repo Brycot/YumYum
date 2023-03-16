@@ -12,7 +12,7 @@
 
 .form {
     width: 900px;
-    height: 700px;
+    height: auto;
     background-color: #1f1d2b;
     padding: 16px;
     display: flex;
@@ -58,7 +58,7 @@
     display: flex;
     align-items: center;
     width: 250px;
-    height: 80px;
+    height: 180px;
     border-radius: 14px;
     background-color: #2d303e;
     border: 2px solid #3b3e4b;
@@ -87,6 +87,7 @@
     border: 0;
     border-radius: 10px;
     background-color: #ea7c69;
+    cursor: pointer;
 }
 .button:hover {
     filter: drop-shadow(0px 0px 10px #ea7c6994);
@@ -96,7 +97,13 @@
     transform: scale(0.9);
     transition: all 0.2s ease;
 }
-
+.buttonAdd {
+    min-height: 46px;
+    margin-top: 16px;
+    color: #ea7c69;
+    border: 2px dashed #ea7c69;
+    background-color: transparent;
+}
 .buttonClone {
     position: absolute;
     top: -10px;
@@ -181,6 +188,21 @@
 .deleteDiet:active {
     transform: scale(0.9);
     transition: all 0.2s ease;
+}
+.stepsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 0 16px 0;
+    height: 534px;
+    overflow-y: auto;
+}
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 @keyframes fadeIn {
     0% {
