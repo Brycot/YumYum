@@ -19,6 +19,26 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         });
     };
 
+    const onSelectChange = ({ target }) => {
+        const { name, value } = target;
+        if (value !== 'ALL' && !formState[name].includes(value)) {
+            setFormState({
+                ...formState,
+                [name]: [...formState[name], value],
+            });
+        }
+    };
+
+    const onSelectDelete = ({ target }) => {
+        const { name, value } = target;
+        if (value !== 'ALL') {
+            setFormState({
+                ...formState,
+                [name]: formState[name].filter((diet) => diet !== value),
+            });
+        }
+    };
+
     const onResetForm = () => {
         setFormState(initialForm);
     };
@@ -49,7 +69,8 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         formState,
         onInputChange,
         onResetForm,
-
+        onSelectChange,
+        onSelectDelete,
         ...formValidation,
         isformValid,
     };

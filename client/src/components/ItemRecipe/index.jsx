@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './ItemRecipe.module.css';
 
 export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
-    const diets = dietas.map((element) => element + ',');
+    // const diets = dietas.map((element) => element + ',');
     return (
         <div className={styles.itemContainer} key={id}>
             <Link to={`/recipes/${id}`}>
@@ -52,11 +52,11 @@ export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
                 </div>
                 <div className={styles.dietsContainer}>
                     <p>Diets</p>
-                    <div>
+                    {/* <div>
                         {diets.slice(0, 2).map((dieta, i) => (
                             <span key={i * 2}>{dieta}</span>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

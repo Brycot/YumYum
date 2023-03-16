@@ -22,9 +22,6 @@ const recipesGetbyId = async (req = request, res = response) => {
 const recipesPost = async (req = request, res = response) => {
     const {
         id,
-        glutenFree,
-        cheap,
-        lowFodmap,
         pricePerServing,
         readyInMinutes,
         servings,
@@ -41,9 +38,6 @@ const recipesPost = async (req = request, res = response) => {
         // añadimos el registo al modelo Recipe
         const recipe = await Recipe.create({
             id,
-            glutenFree,
-            cheap,
-            lowFodmap,
             pricePerServing,
             readyInMinutes,
             servings,

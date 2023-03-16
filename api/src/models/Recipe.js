@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
         {
             id: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true,
             },
             pricePerServing: {
@@ -40,10 +41,6 @@ module.exports = (sequelize) => {
                 allowNull: false,
             },
             cuisines: {
-                type: DataTypes.ARRAY(DataTypes.STRING),
-                allowNull: false,
-            },
-            dishTypes: {
                 type: DataTypes.ARRAY(DataTypes.STRING),
                 allowNull: false,
             },

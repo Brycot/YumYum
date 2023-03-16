@@ -41,6 +41,19 @@
     font-size: 1.2rem;
     outline: 0;
 }
+
+.inputError {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 40px;
+    border-radius: 14px;
+    background-color: #3b1f1f;
+    border: 2px solid #ca2d2d;
+    color: white;
+    font-size: 1.2rem;
+    outline: 0;
+}
 .textarea {
     display: flex;
     align-items: center;
@@ -49,6 +62,18 @@
     border-radius: 14px;
     background-color: #2d303e;
     border: 2px solid #3b3e4b;
+    color: white;
+    font-size: 1.2rem;
+    outline: 0;
+}
+.textareaError {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 80px;
+    border-radius: 14px;
+    background-color: #3b1f1f;
+    border: 2px solid #ca2d2d;
     color: white;
     font-size: 1.2rem;
     outline: 0;
@@ -106,10 +131,16 @@
     align-items: center;
     justify-content: center;
 }
+.errorText {
+    color: #ca2d2d;
+    margin: 0;
+}
 .Container img {
+    margin-top: 16px;
     width: 300px;
     height: 200px;
-    outline: 1px solid red;
+    border: 2px solid #393c49;
+    border-radius: 14px;
 }
 .selectContainer {
     display: flex;
@@ -117,6 +148,39 @@
     align-items: center;
     justify-content: center;
     margin: 16px 0 16px 0;
+}
+
+.selectedDietContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.selectedDietContainer p {
+    margin: 0;
+}
+.selectedDietContainer li {
+    color: white;
+    margin: 0;
+    display: flex;
+}
+
+.deleteDiet {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #ea7c69;
+    outline: 0;
+    border: 0;
+    border-radius: 10px;
+    background-color: transparent;
+}
+.deleteDiet:hover {
+    filter: drop-shadow(0px 0px 10px #ea7c6994);
+    transition: all 0.2s ease;
+}
+.deleteDiet:active {
+    transform: scale(0.9);
+    transition: all 0.2s ease;
 }
 @keyframes fadeIn {
     0% {

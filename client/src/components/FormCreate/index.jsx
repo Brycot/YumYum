@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
+import { createRecipe } from '../../redux/actions';
 import { Input } from '../Input';
 
 import styles from './FormCreate.module.css';
@@ -13,6 +14,8 @@ const formData = {
     servings: '',
     pricePerServing: '',
     healthScore: '',
+    cuisines: [],
+    diets: [],
 };
 //Validaciones por cada campo del formulario
 const formValidations = {
@@ -32,13 +35,17 @@ const formValidations = {
         (value) => value >= 1 && value <= 100,
         'Enter a number between 1 and 100',
     ],
+    cuisines: [(value) => value.length >= 1, 'Is Required'],
+    diets: [(value) => value.length >= 1, 'Is Required'],
 };
 
 export const FormCreate = () => {
+    const [submited, setSubmited] = useState(false);
     const dispatch = useDispatch();
     const cuisines = useSelector((state) => state?.cuisines);
     const diets = useSelector((state) => state?.diets);
-    // Uso el customhooks useForm el cual me regresa el value para cada input, la funcion onInputchange y por cada input si su valor es valido o no
+    // Uso el customhooks useForm el cual me regresa el value para cada input,
+    // la funcion onInputchange y por cada input si su valor es valido o no
     const {
         title,
         summary,
@@ -47,7 +54,12 @@ export const FormCreate = () => {
         servings,
         pricePerServing,
         healthScore,
+        formState,
+        diets: dietsState,
+        isformValid,
         onInputChange,
+        onSelectChange,
+        onSelectDelete,
         pricePerServingValid,
         readyInMinutesValid,
         servingsValid,
@@ -55,14 +67,21 @@ export const FormCreate = () => {
         titleValid,
         imageValid,
         summaryValid,
+        dietsValid,
     } = useForm(formData, formValidations);
     const onClose = () => {
         dispatch({ type: 'TOGGLE_CREATE' });
     };
-
+    const onSubmit = (event) => {
+        event.preventDefault();
+        setSubmited(true);
+        if (!isformValid) return;
+        dispatch(createRecipe(formState));
+        dispatch({ type: 'TOGGLE_CREATE' });
+    };
     return (
         <div className={styles.container}>
-            <form className={styles.form}>
+            <form onSubmit={onSubmit} className={styles.form}>
                 <button
                     type="button"
                     className={`${styles.button} ${styles.buttonClone}`}
@@ -73,78 +92,132 @@ export const FormCreate = () => {
                 <div className={styles.Container}>
                     <label className={styles.label}>Name</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!titleValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="title"
                         value={title}
                         onChange={onInputChange}
                         type="text"
                         placeholder="Bistek"
                     />
+                    {!!titleValid && submited && (
+                        <p className={styles.errorText}>{titleValid}</p>
+                    )}
                     <label className={styles.label}>Summary</label>
                     <textarea
-                        className={styles.textarea}
+                        className={
+                            !!titleValid && submited
+                                ? styles.textareaError
+                                : styles.textarea
+                        }
                         name="summary"
                         value={summary}
                         onChange={onInputChange}
                         type="text"
                         placeholder="Delicius bistek"
                     />
+                    {!!summaryValid && submited && (
+                        <p className={styles.errorText}>{summaryValid}</p>
+                    )}
                     <label className={styles.label}>Servings</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!servingsValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="servings"
                         value={servings}
                         onChange={onInputChange}
                         type="number"
                         placeholder="8"
                     />
+                    {!!servingsValid && submited && (
+                        <p className={styles.errorText}>{servingsValid}</p>
+                    )}
                     <label className={styles.label}>Price per serving</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!pricePerServingValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="pricePerServing"
                         value={pricePerServing}
                         onChange={onInputChange}
                         type="number"
                         placeholder="$2.88"
                     />
+                    {!!pricePerServingValid && submited && (
+                        <p className={styles.errorText}>
+                            {pricePerServingValid}
+                        </p>
+                    )}
                     <label className={styles.label}>Time of preparation</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!readyInMinutesValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="readyInMinutes"
                         value={readyInMinutes}
                         onChange={onInputChange}
                         type="number"
                         placeholder="23 Minutes"
                     />
+                    {!!readyInMinutesValid && submited && (
+                        <p className={styles.errorText}>
+                            {readyInMinutesValid}
+                        </p>
+                    )}
                     <label className={styles.label}>Health Score</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!healthScoreValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="healthScore"
                         value={healthScore}
                         onChange={onInputChange}
                         type="number"
                         placeholder="56"
                     />
+                    {!!healthScoreValid && submited && (
+                        <p className={styles.errorText}>{healthScoreValid}</p>
+                    )}
                 </div>
                 <div className={styles.Container}>
                     <label className={styles.label}>Image Url</label>
                     <input
-                        className={styles.input}
+                        className={
+                            !!imageValid && submited
+                                ? styles.inputError
+                                : styles.input
+                        }
                         name="image"
                         value={image}
                         onChange={onInputChange}
                         type="text"
                         placeholder="https://....."
                     />
+                    {!!imageValid && submited && (
+                        <p className={styles.errorText}>{imageValid}</p>
+                    )}
                     <img src={image} alt="" />
                     <div className={styles.selectContainer}>
-                        <label className={styles.label} htmlFor="origin">
+                        <label className={styles.label} htmlFor="cuisines">
                             Origin
                         </label>
                         <select
                             className={styles.select}
-                            id="origin"
-                            name="origin"
+                            onChange={onSelectChange}
+                            id="cuisines"
+                            name="cuisines"
                         >
                             <option value="Origin">Select</option>
                             {cuisines &&
@@ -154,6 +227,9 @@ export const FormCreate = () => {
                                     </option>
                                 ))}
                         </select>
+                        {!!dietsValid && submited && (
+                            <p className={styles.errorText}>{dietsValid}</p>
+                        )}
                     </div>
                     <div className={styles.selectContainer}>
                         <label className={styles.label} htmlFor="Diets">
@@ -161,17 +237,40 @@ export const FormCreate = () => {
                         </label>
                         <select
                             className={styles.select}
+                            onChange={onSelectChange}
                             id="diets"
                             name="diets"
                         >
                             <option value="All">Select</option>
                             {diets &&
-                                diets.map((diet, i) => (
-                                    <option key={i} value={diet.name}>
-                                        {diet.name}
-                                    </option>
-                                ))}
+                                diets.map(({ name, id }, i) => {
+                                    return (
+                                        <option key={i} value={id}>
+                                            {name}
+                                        </option>
+                                    );
+                                })}
                         </select>
+                        <ul className={styles.selectedDietContainer}>
+                            {dietsState.length >= 1 &&
+                                dietsState.map((diet) => (
+                                    <li key={diet}>
+                                        <p>{diet}</p>
+                                        <button
+                                            name="diets"
+                                            type="button"
+                                            onClick={onSelectDelete}
+                                            value={diet}
+                                            className={styles.deleteDiet}
+                                        >
+                                            X
+                                        </button>
+                                    </li>
+                                ))}
+                        </ul>
+                        {!!dietsValid && submited && (
+                            <p className={styles.errorText}>{dietsValid}</p>
+                        )}
                     </div>
                     <button className={styles.button} type="submit">
                         Create Recipe

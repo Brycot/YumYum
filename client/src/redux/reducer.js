@@ -10,6 +10,8 @@ import {
     GET_SORT_SCORE,
     DELETE_FILTERS,
     TOGGLE_CREATE,
+    IS_LOADING,
+    CREATE_RECIPE,
 } from './actions';
 
 const initialState = {
@@ -20,6 +22,8 @@ const initialState = {
     diets: [],
     cuisines: [],
     onCreate: false,
+    onLoading: false,
+    onError: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -121,6 +125,18 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 onCreate: !state.onCreate,
+            };
+        case IS_LOADING:
+            return {
+                ...state,
+                onLoading: true,
+            };
+        case CREATE_RECIPE:
+            return {
+                ...state,
+                onLoading: false,
+                allRecipes: [...state.allRecipes, action.payload],
+                filteredRecipes: [...state.allRecipes, action.payload],
             };
         case LOGIN: {
             return {
