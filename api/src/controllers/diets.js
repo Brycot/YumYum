@@ -9,7 +9,6 @@ const dietsGet = async (req = request, res = response) => {
         res.status(400).json({ error });
     }
 };
-
 module.exports = {
     dietsGet,
 };

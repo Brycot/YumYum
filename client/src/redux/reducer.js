@@ -13,7 +13,7 @@ import {
     IS_LOADING,
     CREATE_RECIPE,
     CLOSE_MODAL,
-} from './actions';
+} from './actions-types';
 
 const initialState = {
     login: false,

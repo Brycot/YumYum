@@ -198,6 +198,11 @@
     height: 534px;
     overflow-y: auto;
 }
+.stepsContainer span {
+    font-size: 1rem;
+    color: rgb(168, 157, 157);
+    text-align: center;
+}
 .step {
     display: flex;
     flex-direction: column;

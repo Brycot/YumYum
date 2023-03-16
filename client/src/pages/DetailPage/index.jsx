@@ -6,10 +6,10 @@ import { getRecipeDetail } from '../../redux/actions';
 export const DetailPage = () => {
     const { recipeId } = useParams();
     const dispatch = useDispatch();
-    const { id, image, title, servings, dietas } = useSelector(
+    const { id, image, title, servings, diets, steps } = useSelector(
         (state) => state?.recipe
     );
-
+    console.log(steps);
     useEffect(() => {
         dispatch(getRecipeDetail(recipeId));
     }, []);

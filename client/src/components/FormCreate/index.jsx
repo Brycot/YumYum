@@ -6,13 +6,13 @@ import { createRecipe } from '../../redux/actions';
 import styles from './FormCreate.module.css';
 //Estado inicial del formulario
 const formData = {
-    title: '',
-    summary: '',
-    image: '',
-    readyInMinutes: '',
-    servings: '',
-    pricePerServing: '',
-    healthScore: '',
+    title: 'Mojarra',
+    summary: 'Una rica mojarra para mañana',
+    image: 'https://recetatipica.com/wp-content/uploads/2019/12/mojarra-frita.jpg',
+    readyInMinutes: '34',
+    servings: '3',
+    pricePerServing: '34.3',
+    healthScore: '56',
     cuisines: [],
     diets: [],
 };
@@ -78,11 +78,10 @@ export const FormCreate = () => {
     };
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(formStepsState);
-        // setSubmited(true);
-        // if (!isformValid) return;
-        // dispatch(createRecipe(formState));
-        // dispatch({ type: 'TOGGLE_CREATE' });
+        setSubmited(true);
+        if (!isformValid) return;
+        dispatch(createRecipe(formState, formStepsState));
+        dispatch({ type: 'TOGGLE_CREATE' });
     };
     const addStep = () => {
         setNSteps(nSteps + 1);
@@ -202,12 +201,13 @@ export const FormCreate = () => {
                 </div>
                 {/* Column steps */}
                 <div className={`${styles.Container} ${styles.stepsContainer}`}>
+                    <span>Ingredients must be separated by commas</span>
                     {Array.from({ length: nSteps }).map((s, i) => (
                         <div className={styles.step} key={i}>
                             <label className={styles.label}>Paso {i + 1}</label>
                             <input
                                 className={styles.input}
-                                name={`step${i + 1}-description`}
+                                name={`step${i + 1}-step`}
                                 type="text"
                                 onChange={onStepChange}
                                 placeholder="Description"

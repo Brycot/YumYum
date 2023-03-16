@@ -1,24 +1,24 @@
 import axios from 'axios';
+import {
+    CREATE_RECIPE,
+    DELETE_FILTERS,
+    GET_CUISINES,
+    GET_DIETS,
+    GET_RECIPES,
+    GET_RECIPE_DETAIL,
+    GET_SORT,
+    GET_SORT_CUISINE,
+    GET_SORT_DIET,
+    GET_SORT_SCORE,
+    IS_LOADING,
+    TOGGLE_ERROR,
+} from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
-export const GET_RECIPES = 'GET_RECIPES';
-export const CREATE_RECIPE = 'CREATE_RECIPE';
-export const GET_CUISINES = 'GET_CUISINES';
-export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
-export const GET_DIETS = 'GET_DIETS';
-export const LOGIN = 'LOGIN';
-export const GET_SORT = 'GET_SORT';
-export const GET_SORT_CUISINE = 'GET_SORT_CUISINE';
-export const GET_SORT_DIET = 'GET_SORT_DIET';
-export const GET_SORT_SCORE = 'GET_SORT_SCORE';
-export const DELETE_FILTERS = 'DELETE_FILTERS';
-export const IS_LOADING = 'IS_LOADING';
-export const TOGGLE_CREATE = 'TOGGLE_CREATE';
-export const TOGGLE_ERROR = 'TOGGLE_CREATE';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // actions gets
 export const getAllRecipes = () => async (dispatch) => {
+    dispatch({ type: IS_LOADING });
     const { data } = await axios('http://localhost:3001/recipes');
     dispatch({ type: GET_RECIPES, payload: data });
 };
@@ -52,11 +52,21 @@ export const deleteFilters = () => (dispatch) => {
     dispatch({ type: DELETE_FILTERS });
 };
 
-export const createRecipe = (recipe) => async (dispatch) => {
+export const createRecipe = (recipe, stepsObj) => async (dispatch) => {
+    const steps = Object.values(stepsObj);
     dispatch({ type: IS_LOADING });
-    const response = await axios.post('http://localhost:3001/recipes', recipe);
+    const response = await axios.post('http://localhost:3001/recipes', {
+        ...recipe,
+        steps,
+    });
     if (response.status !== 201) {
         dispatch({ type: TOGGLE_ERROR, payload: 'No se creo la receta' });
     }
     dispatch({ type: CREATE_RECIPE, payload: recipe });
+};
+
+export const searchRecipe = (recipe) => async (dispatch) => {
+    dispatch({ type: IS_LOADING });
+    const { data } = await axios('http://localhost:3001/recipes?name$()');
+    dispatch({ type: GET_RECIPES, payload: data });
 };

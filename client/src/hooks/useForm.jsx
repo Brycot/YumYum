@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { getObjIngredients } from '../helpers/getObjIngredients';
 
 export const useForm = (initialForm = {}, formValidations = {}) => {
     const [formState, setFormState] = useState(initialForm);
@@ -14,19 +15,29 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     const onInputChange = ({ target }) => {
         const { name, value } = target;
         if (!name.includes('step')) {
+            // any form value
             setFormState({
                 ...formState,
                 [name]: value,
             });
             return;
         }
-        const [stepNumber, modify] = name.split('-');
-        const newState = formState;
-        newState[stepNumber] = {
-            ...newState[stepNumber],
-            step: stepNumber[4],
-            [modify]: value,
-        };
+        const [stepNumber, modify] = name.split('-'); // Get values for work with steps
+        const newState = { ...formState }; // Create a copy of the previous state
+        if (modify === 'ingredients') {
+            const ingredients = getObjIngredients(value);
+            newState[stepNumber] = {
+                ...newState[stepNumber],
+                number: stepNumber[4],
+                [modify]: ingredients,
+            };
+        } else {
+            newState[stepNumber] = {
+                ...newState[stepNumber],
+                number: stepNumber[4],
+                [modify]: value,
+            };
+        }
         setFormState(newState);
     };
 
