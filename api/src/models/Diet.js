@@ -14,17 +14,15 @@ module.exports = (sequelize) => {
             name: {
                 type: DataTypes.ENUM(
                     'gluten free',
-                    'dairy free',
                     'ketogenic',
-                    'vegetarian',
-                    'lacto-vegetarian',
-                    'ovo-vegetarian',
-                    'lacto ovo vegetarian',
+                    'dairy free',
                     'vegan',
+                    'lacto ovo vegetarian',
                     'pescatarian',
-                    'paleo',
+                    'paleolithic',
+                    'fodmap friendly',
                     'primal',
-                    'low fodmap',
+                    'paleo',
                     'whole 30'
                 ),
                 allowNull: false,

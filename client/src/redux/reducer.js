@@ -14,6 +14,7 @@ import {
     CREATE_RECIPE,
     CLOSE_MODAL,
     SEARCH_RECIPE,
+    GET_SORT_FROM,
 } from './actions-types';
 
 const initialState = {
@@ -117,6 +118,24 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredRecipes: filtered,
+            };
+
+        case GET_SORT_FROM:
+            if (action.payload === 'All') {
+                return {
+                    ...state,
+                    filteredRecipes: [...state.allRecipes],
+                };
+            }
+            const filterFrom =
+                action.payload === 'db'
+                    ? [...state.allRecipes].filter((recipe) => recipe.db)
+                    : action.payload === 'api'
+                    ? [...state.allRecipes].filter((recipe) => !recipe.db)
+                    : [...state.allRecipes];
+            return {
+                ...state,
+                filteredRecipes: filterFrom,
             };
 
         case DELETE_FILTERS:

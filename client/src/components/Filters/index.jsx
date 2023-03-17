@@ -12,6 +12,7 @@ export const Filters = () => {
         handleSortByDiet,
         handleSortByScore,
         handleDeleteFilters,
+        handleSortByCreated,
     } = useFilters();
 
     return (
@@ -29,6 +30,21 @@ export const Filters = () => {
                     <option value="sort">[A-Z]</option>
                     <option value="asc">Name (A-Z)</option>
                     <option value="desc">Name (Z-A)</option>
+                </select>
+            </div>
+            <div className={styles.filterContainer}>
+                <label className={styles.label} htmlFor="origin">
+                    Created by
+                </label>
+                <select
+                    className={styles.select}
+                    id="created"
+                    name="created"
+                    onChange={handleSortByCreated}
+                >
+                    <option value="All">All</option>
+                    <option value="api">Api</option>
+                    <option value="db">Db</option>
                 </select>
             </div>
             <div className={styles.filterContainer}>

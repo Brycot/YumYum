@@ -51,6 +51,10 @@ module.exports = (sequelize) => {
             dietas: {
                 type: DataTypes.ARRAY(DataTypes.STRING),
             },
+            db: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: true,
+            },
         },
         {
             timestamps: false,

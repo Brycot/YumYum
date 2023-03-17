@@ -13,6 +13,7 @@ import {
     IS_LOADING,
     TOGGLE_ERROR,
     SEARCH_RECIPE,
+    GET_SORT_FROM
 } from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
@@ -48,6 +49,9 @@ export const sortByDiet = (data) => (dispatch) => {
 };
 export const sortByScore = (data) => (dispatch) => {
     dispatch({ type: GET_SORT_SCORE, payload: data });
+};
+export const sortByCreated = (data) => (dispatch) => {
+    dispatch({ type: GET_SORT_FROM, payload: data });
 };
 export const deleteFilters = () => (dispatch) => {
     dispatch({ type: DELETE_FILTERS });

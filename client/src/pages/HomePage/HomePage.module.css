@@ -3,7 +3,7 @@
     height: auto;
     display: grid;
     grid-template-columns: 300px 1fr;
-    grid-template-rows: 200px 70px 1fr 200px;
+    grid-template-rows: 600px 70px 1fr 40px;
     grid-template-areas:
         'header header'
         'filters browser'

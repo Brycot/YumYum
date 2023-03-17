@@ -1,6 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { DetailPage, HomePage, LandingPage } from '../pages';
+import {
+    AboutPage,
+    DetailPage,
+    HomePage,
+    LandingPage,
+    NotFound,
+} from '../pages';
 
 export const AppRoutes = () => {
     return (
@@ -12,8 +18,14 @@ export const AppRoutes = () => {
                 <Route path="/landing">
                     <LandingPage />
                 </Route>
+                <Route path="/about">
+                    <AboutPage />
+                </Route>
                 <Route path="/recipes/:recipeId">
                     <DetailPage />
+                </Route>
+                <Route path="/*">
+                    <NotFound />
                 </Route>
             </Switch>
         </>

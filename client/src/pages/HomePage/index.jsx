@@ -9,11 +9,13 @@ import {
     CreateButton,
     FormCreate,
     Modal,
+    Header,
 } from '../../components';
 import { getAllRecipes } from '../../redux/actions';
 import { usePagination } from '../../hooks';
 
 import styles from './HomePage.module.css';
+import { Footer } from '../../components/Footer';
 
 export const HomePage = () => {
     const dispatch = useDispatch();
@@ -29,7 +31,7 @@ export const HomePage = () => {
     }, []);
     return (
         <main className={styles.main}>
-            <h1>YumYum</h1>
+            <Header />
             <Filters />
             <Browser>
                 <SearchBar />
@@ -78,6 +80,7 @@ export const HomePage = () => {
                     }
                 />
             )}
+            <Footer />
         </main>
     );
 };

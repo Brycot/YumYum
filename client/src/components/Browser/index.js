@@ -1,10 +1,7 @@
-import React from 'react'
+import React from 'react';
 
+import styles from './Browser.module.css';
 
-import styles from './Browser.module.css'
-
-export const Browser = ({children}) => {
-  return (
-    <section className={styles.browser}>{children}</section>
-  )
-}
+export const Browser = ({ children }) => {
+    return <section className={styles.browser}>{children}</section>;
+};

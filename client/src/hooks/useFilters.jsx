@@ -4,6 +4,7 @@ import {
     deleteFilters,
     getAllCuisines,
     getAllDiets,
+    sortByCreated,
     sortByCuisine,
     sortByDiet,
     sortByName,
@@ -31,11 +32,16 @@ export const useFilters = () => {
         const selectedValue = event.target.value;
         dispatch(sortByScore(selectedValue));
     };
+    const handleSortByCreated = (event) => {
+        const selectedValue = event.target.value;
+        dispatch(sortByCreated(selectedValue));
+    };
 
     const handleDeleteFilters = () => {
         dispatch(deleteFilters());
         document.getElementById('sort').value = 'sort';
         document.getElementById('origin').value = 'All';
+        document.getElementById('created').value = 'All';
         document.getElementById('diets').value = 'All';
         document.getElementById('healthScore').value = 'All';
     };
@@ -52,5 +58,6 @@ export const useFilters = () => {
         handleSortByDiet,
         handleSortByScore,
         handleDeleteFilters,
+        handleSortByCreated,
     };
 };
