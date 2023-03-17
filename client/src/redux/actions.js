@@ -12,6 +12,7 @@ import {
     GET_SORT_SCORE,
     IS_LOADING,
     TOGGLE_ERROR,
+    SEARCH_RECIPE,
 } from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
@@ -67,6 +68,8 @@ export const createRecipe = (recipe, stepsObj) => async (dispatch) => {
 
 export const searchRecipe = (recipe) => async (dispatch) => {
     dispatch({ type: IS_LOADING });
-    const { data } = await axios('http://localhost:3001/recipes?name$()');
-    dispatch({ type: GET_RECIPES, payload: data });
+    const { data } = await axios(
+        `http://localhost:3001/recipes?name=${recipe}`
+    );
+    dispatch({ type: SEARCH_RECIPE, payload: data });
 };

@@ -13,3 +13,4 @@ export const IS_LOADING = 'IS_LOADING';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const TOGGLE_ERROR = 'TOGGLE_ERROR';
+export const SEARCH_RECIPE = 'SEARCH_RECIPE';

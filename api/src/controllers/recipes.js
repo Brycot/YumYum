@@ -1,10 +1,11 @@
 const { response, request } = require('express');
-const { getInfo, getInfoById } = require('../helpers/getInfo');
+const { getInfo, getInfoById, getInfoBySearch } = require('../helpers/getInfo');
 const { Recipe, Diet } = require('../db');
 
 const recipesGet = async (req = request, res = response) => {
+    const { name } = req.query;
     try {
-        const recipes = await getInfo();
+        const recipes = name ? await getInfoBySearch(name) : await getInfo();
         res.status(200).json(recipes);
     } catch (error) {
         res.status(400).json({ error: error.message });

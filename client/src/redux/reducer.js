@@ -13,6 +13,7 @@ import {
     IS_LOADING,
     CREATE_RECIPE,
     CLOSE_MODAL,
+    SEARCH_RECIPE,
 } from './actions-types';
 
 const initialState = {
@@ -144,6 +145,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 onError: '',
                 created: false,
+            };
+        case SEARCH_RECIPE:
+            return {
+                ...state,
+                filteredRecipes: action.payload,
+                onLoading: false,
             };
         case LOGIN: {
             return {

@@ -6,13 +6,13 @@ import { createRecipe } from '../../redux/actions';
 import styles from './FormCreate.module.css';
 //Estado inicial del formulario
 const formData = {
-    title: 'Mojarra',
-    summary: 'Una rica mojarra para mañana',
-    image: 'https://recetatipica.com/wp-content/uploads/2019/12/mojarra-frita.jpg',
-    readyInMinutes: '34',
-    servings: '3',
-    pricePerServing: '34.3',
-    healthScore: '56',
+    title: '',
+    summary: '',
+    image: '',
+    readyInMinutes: '',
+    servings: '',
+    pricePerServing: '',
+    healthScore: '',
     cuisines: [],
     diets: [],
 };

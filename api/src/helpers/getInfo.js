@@ -1,5 +1,13 @@
-const { getApiInfo, getApiInfoById } = require('./getApiInfo');
-const { getRecipesDb, getRecipesDbById } = require('./getDbInfo');
+const {
+    getApiInfo,
+    getApiInfoById,
+    getApiInfoByName,
+} = require('./getApiInfo');
+const {
+    getRecipesDb,
+    getRecipesDbById,
+    getRecipeDbByName,
+} = require('./getDbInfo');
 
 // Obtener todas las recetas tanto de la api como de la base de datos
 const getInfo = async () => {
@@ -42,7 +50,20 @@ const getInfoById = async (id) => {
     }
 };
 
+const getInfoBySearch = async (search) => {
+    if (!search) throw new Error(`The search is required`);
+    try {
+        const recipesDb = await getRecipeDbByName(search);
+        // const recipesApi = await getApiInfoByName(search);
+        // const allRecipes = recipesDb.concat(recipesApi);
+        return recipesDb;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
 module.exports = {
     getInfo,
     getInfoById,
+    getInfoBySearch,
 };

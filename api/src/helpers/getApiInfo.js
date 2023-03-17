@@ -30,8 +30,20 @@ const getApiInfoById = async (id) => {
         throw new Error(error);
     }
 };
+
+const getApiInfoByName = async (name) => {
+    try {
+        const { data } = await instance(
+            `/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&instructionsRequired=true`
+        );
+        return data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 // exporto los helpers
 module.exports = {
     getApiInfo,
     getApiInfoById,
+    getApiInfoByName,
 };
