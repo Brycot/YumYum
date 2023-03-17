@@ -11,11 +11,11 @@ export const DetailPage = () => {
     const { recipeId } = useParams();
     const dispatch = useDispatch();
     const {
-        id,
+        summary,
         image,
         title,
         servings,
-        diets,
+        dietas,
         steps,
         readyInMinutes,
         pricePerServing,
@@ -32,6 +32,9 @@ export const DetailPage = () => {
                     ingredient.name.slice(1),
             };
         });
+    const Diets = dietas
+        ?.map((diet) => diet.charAt(0).toUpperCase() + diet.slice(1))
+        .join(' - ');
 
     useEffect(() => {
         dispatch(getRecipeDetail(recipeId));
@@ -47,15 +50,32 @@ export const DetailPage = () => {
                     <div className={styles.title}>
                         <h1>{title}</h1>
                     </div>
-                    <div>
-                        <p>Health Score: </p>
-                        <p>150</p>
+                    <div className={styles.diets}>
+                        <p>{Diets}</p>
+                    </div>
+                    <div className={styles.summary}>
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: summary,
+                            }}
+                        ></p>
                     </div>
                 </section>
-                <section>
-                    <p>Steps</p>
-                    <p>1</p>
-                    <p></p>
+                <section className={styles.stepsContainer}>
+                    <div className={styles.steps}>
+                        <h4>Method</h4>
+                        <section className={styles.container}>
+                            {steps?.map(({ step, number }) => (
+                                <div key={step} className={styles.step}>
+                                    <span>STEP {number}</span>
+                                    <div>
+                                        <p>{step}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </section>
+                        <div className={styles.stepsShadow}></div>
+                    </div>
                 </section>
                 <section className={styles.infoSectionContainer}>
                     <div className={styles.infoSection}>

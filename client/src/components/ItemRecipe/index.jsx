@@ -34,7 +34,6 @@ export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
                 </div>
                 <div className={styles.servingContainer}>
                     <p>Servings</p>
-                    {/* <span>{servings}</span> */}
                     <div>
                         {Array.from({ length: servings }).map((a, i) => (
                             <svg
