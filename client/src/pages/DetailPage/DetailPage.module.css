@@ -1,0 +1,109 @@
+.header {
+    width: 100%;
+    height: 7vh;
+    margin: 0;
+}
+
+.main {
+    margin: 0;
+    width: 100%;
+    height: 93vh;
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        'title info'
+        'steps info';
+}
+.titleContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 40px;
+    position: relative;
+}
+.title {
+    width: 500px;
+    height: 200px;
+    color: white;
+}
+.titleContainer img {
+    position: absolute;
+    right: -30px;
+    border-radius: 20px;
+}
+.title h1 {
+    font-size: 2rem;
+}
+.infoSectionContainer {
+    width: 100%;
+    height: 100%;
+    grid-area: info;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoSection {
+    width: 80%;
+    height: 95%;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+}
+
+.recipeInfo {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoText {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.infoText div {
+    display: flex;
+    align-items: center;
+}
+
+.recipeIngredients {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredientsTitle {
+    font-size: 1.8rem;
+    color: #252836;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.servings {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #9199ae;
+}
+
+.ingredientsContainer {
+    width: 100%;
+    height: 530px;
+    overflow-x: auto;
+}
+
+.ingredientsContainer p {
+    font-size: 1.1rem;
+}

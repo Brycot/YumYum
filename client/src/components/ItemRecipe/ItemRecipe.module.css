@@ -69,6 +69,10 @@
     align-items: flex-start;
     font-weight: 500;
 }
+.servingContainer p,
+.dietsContainer p {
+    margin: 0;
+}
 .servingContainer svg {
     width: 20px;
     height: 20px;
