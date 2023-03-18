@@ -4,7 +4,6 @@ import {
     GET_RECIPE_DETAIL,
     GET_DIETS,
     GET_SORT,
-    LOGIN,
     GET_SORT_CUISINE,
     GET_SORT_DIET,
     GET_SORT_SCORE,
@@ -18,14 +17,13 @@ import {
 } from './actions-types';
 
 const initialState = {
-    login: false,
     allRecipes: [],
     recipe: [],
     filteredRecipes: [],
     diets: [],
     cuisines: [],
     onCreate: false,
-    onLoading: false,
+    onLoading: true,
     onError: '',
     created: false,
 };
@@ -36,6 +34,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_RECIPES:
             return {
                 ...state,
+                onLoading: false,
                 allRecipes: action.payload,
                 filteredRecipes: action.payload,
             };
@@ -53,6 +52,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 recipe: action.payload,
+                onLoading: false,
             };
 
         case GET_SORT:
@@ -171,12 +171,6 @@ const rootReducer = (state = initialState, action) => {
                 filteredRecipes: action.payload,
                 onLoading: false,
             };
-        case LOGIN: {
-            return {
-                ...state,
-                login: true,
-            };
-        }
         default:
             return state;
     }

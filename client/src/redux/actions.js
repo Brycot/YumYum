@@ -13,7 +13,7 @@ import {
     IS_LOADING,
     TOGGLE_ERROR,
     SEARCH_RECIPE,
-    GET_SORT_FROM
+    GET_SORT_FROM,
 } from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
@@ -33,6 +33,7 @@ export const getAllDiets = () => async (dispatch) => {
     dispatch({ type: GET_DIETS, payload: data });
 };
 export const getRecipeDetail = (id) => async (dispatch) => {
+    dispatch({ type: IS_LOADING });
     const { data } = await axios(`http://localhost:3001/recipes/${id}`);
     dispatch({ type: GET_RECIPE_DETAIL, payload: data });
 };

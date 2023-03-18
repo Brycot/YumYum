@@ -3,7 +3,6 @@ export const GET_CUISINES = 'GET_CUISINES';
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 export const GET_DIETS = 'GET_DIETS';
 export const GET_SORT = 'GET_SORT';
-export const LOGIN = 'LOGIN';
 export const GET_SORT_CUISINE = 'GET_SORT_CUISINE';
 export const GET_SORT_DIET = 'GET_SORT_DIET';
 export const GET_SORT_SCORE = 'GET_SORT_SCORE';

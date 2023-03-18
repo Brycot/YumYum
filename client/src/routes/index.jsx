@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import {
     AboutPage,
@@ -13,10 +14,10 @@ export const AppRoutes = () => {
         <>
             <Switch>
                 <Route exact path="/">
-                    <HomePage />
-                </Route>
-                <Route path="/landing">
                     <LandingPage />
+                </Route>
+                <Route exact path="/home">
+                    <HomePage />
                 </Route>
                 <Route path="/about">
                     <AboutPage />

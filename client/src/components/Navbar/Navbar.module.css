@@ -26,6 +26,8 @@
     text-align: center;
     font-size: 1.3rem;
     color: #ea7c69;
+    border-radius: 10px;
+    background-color: #ea7c6936;
     animation: changeColor 0.2s ease;
     transition: all 0.5s ease;
 }
@@ -36,7 +38,11 @@
     text-decoration: none;
     text-align: center;
     font-size: 1.3rem;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+}
+.inactive:hover {
+    background-color: #ffffff36;
 }
 
 @keyframes changeColor {

@@ -11,7 +11,7 @@ export const Navbar = () => {
             <div>
                 <NavLink
                     exact
-                    to="/"
+                    to="/home"
                     className={(isActive) =>
                         isActive ? styles.active : styles.inactive
                     }
@@ -29,7 +29,7 @@ export const Navbar = () => {
                 </NavLink>
                 <NavLink
                     exact
-                    to="/landing"
+                    to="/"
                     className={(isActive) =>
                         isActive ? styles.active : styles.inactive
                     }
