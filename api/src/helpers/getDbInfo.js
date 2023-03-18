@@ -19,9 +19,7 @@ const getRecipesDbById = async (id) => {
     if (!id) throw new Error(`The id is required`);
 
     const recipe = await Recipe.findByPk(id);
-
-    if (!recipe) throw new Error(`Does not exist a recipe with id: ${id}`);
-
+    if (!recipe) return;
     const diets = await recipe.getDiets();
     const dietsString = diets.map((diet) => diet.name);
     return { ...recipe.toJSON(), diets: dietsString };

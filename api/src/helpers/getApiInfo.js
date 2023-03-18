@@ -23,8 +23,11 @@ const getApiInfo = async () => {
 };
 
 const getApiInfoById = async (id) => {
+    //${id}/information?apiKey=${API_KEY}
     try {
-        const { data } = await instance(`/${id}/information?apiKey=${API_KEY}`);
+        const { data } = await instance(
+            `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+        );
         return data;
     } catch (error) {
         throw new Error(error);
