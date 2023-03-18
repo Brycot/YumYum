@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ItemRecipe.module.css';
 
-export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
-    // const diets = dietas.map((element) => element + ',');
+export const ItemRecipe = ({ id, image, title, servings, diets }) => {
+    const dietsStrings = diets?.map((element) => element + ',');
     return (
         <div className={styles.itemContainer} key={id}>
             <Link to={`/recipes/${id}`}>
@@ -25,7 +25,12 @@ export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
                         </svg>
                         <p>More</p>
                     </div>
-                    <img className={styles.img} src={image} alt={title} />
+                    <img
+                        className={styles.img}
+                        loading="lazy"
+                        src={image}
+                        alt={title}
+                    />
                 </div>
             </Link>
             <div className={styles.textContainer}>
@@ -51,11 +56,11 @@ export const ItemRecipe = ({ id, image, title, servings, dietas }) => {
                 </div>
                 <div className={styles.dietsContainer}>
                     <p>Diets</p>
-                    {/* <div>
-                        {diets.slice(0, 2).map((dieta, i) => (
+                    <div>
+                        {dietsStrings.slice(0, 2).map((dieta, i) => (
                             <span key={i * 2}>{dieta}</span>
                         ))}
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

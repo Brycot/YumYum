@@ -48,9 +48,6 @@ module.exports = (sequelize) => {
                 type: DataTypes.ARRAY(DataTypes.JSON),
                 // allowNull: false,
             },
-            dietas: {
-                type: DataTypes.ARRAY(DataTypes.STRING),
-            },
             db: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: true,

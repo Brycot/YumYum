@@ -100,7 +100,7 @@ const rootReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                filteredRecipes: state.allRecipes.filter((recipe) =>
+                filteredRecipes: [...state.allRecipes].filter((recipe) =>
                     recipe.cuisines.includes(action.payload)
                 ),
             };
@@ -113,7 +113,7 @@ const rootReducer = (state = initialState, action) => {
                 };
             }
             const filtered = [...state.allRecipes].filter((recipe) =>
-                recipe.dietas.includes(action.payload)
+                recipe.diets.includes(action.payload)
             );
             return {
                 ...state,
@@ -141,7 +141,7 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_FILTERS:
             return {
                 ...state,
-                filteredRecipes: state.allRecipes,
+                filteredRecipes: [...state.allRecipes],
             };
         case TOGGLE_CREATE:
             return {

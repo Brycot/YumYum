@@ -1,7 +1,7 @@
 .itemContainer {
     position: relative;
     height: 180px;
-    width: 470px;
+    width: 490px;
     padding: 10px;
     background-color: #1f1d2b;
     border-radius: 18px;
@@ -87,6 +87,7 @@
     font-size: 14px;
     font-weight: lighter;
     color: #abbbc2;
+    margin: 0;
 }
 .dietsContainer div {
     width: 100%;

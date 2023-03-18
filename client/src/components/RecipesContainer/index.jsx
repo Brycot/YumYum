@@ -12,9 +12,7 @@ export const RecipesContainer = ({
 }) => {
     return (
         <section className={styled.container}>
-            {filteredRecipes.length < 1 && (
-                <NoExist />
-            )}
+            {filteredRecipes.length < 1 && <NoExist />}
             {filteredRecipes &&
                 filteredRecipes
                     .slice(
@@ -29,7 +27,7 @@ export const RecipesContainer = ({
                             title={recipe.title}
                             cheap={recipe.cheap}
                             servings={recipe.servings}
-                            dietas={recipe.dietas}
+                            diets={recipe.diets}
                         />
                     ))}
         </section>

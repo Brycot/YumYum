@@ -13,7 +13,7 @@ const { API_KEY } = process.env;
 const getApiInfo = async () => {
     try {
         const { data } = await instance(
-            `/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`
+            `/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
         );
 
         return data.results;
@@ -34,9 +34,9 @@ const getApiInfoById = async (id) => {
 const getApiInfoByName = async (name) => {
     try {
         const { data } = await instance(
-            `/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&instructionsRequired=true`
+            `/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true`
         );
-        return data;
+        return data.results;
     } catch (error) {
         throw new Error(error);
     }
