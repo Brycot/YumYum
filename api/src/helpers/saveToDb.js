@@ -1,40 +1,39 @@
 const { Recipe, Diet, Cuisine } = require('../db');
-const { recipes } = require('../utils/data');
 
-const saveApiRecipesToDb = async () => {
-    const recipesPms = recipes.results.map(
-        ({
-            id,
-            pricePerServing,
-            readyInMinutes,
-            servings,
-            healthScore,
-            title,
-            image,
-            summary,
-            cuisines,
-            dishTypes,
-            analyzedInstructions,
-            diets,
-        }) => {
-            return Recipe.create({
-                id,
-                pricePerServing,
-                readyInMinutes,
-                servings,
-                healthScore,
-                title,
-                image,
-                summary,
-                cuisines,
-                dishTypes,
-                steps: analyzedInstructions[0]?.steps,
-                dietas: diets,
-            });
-        }
-    );
-    await Promise.all(recipesPms);
-};
+// const saveApiRecipesToDb = async () => {
+//     const recipesPms = recipes.results.map(
+//         ({
+//             id,
+//             pricePerServing,
+//             readyInMinutes,
+//             servings,
+//             healthScore,
+//             title,
+//             image,
+//             summary,
+//             cuisines,
+//             dishTypes,
+//             analyzedInstructions,
+//             diets,
+//         }) => {
+//             return Recipe.create({
+//                 id,
+//                 pricePerServing,
+//                 readyInMinutes,
+//                 servings,
+//                 healthScore,
+//                 title,
+//                 image,
+//                 summary,
+//                 cuisines,
+//                 dishTypes,
+//                 steps: analyzedInstructions[0]?.steps,
+//                 dietas: diets,
+//             });
+//         }
+//     );
+//     await Promise.all(recipesPms);
+// };
 
 const saveDietsToDb = async () => {
     const newDiets = [
@@ -91,7 +90,6 @@ const saveCuisinesToDb = async () => {
     await Promise.all(cuisinesPms);
 };
 module.exports = {
-    saveApiRecipesToDb,
     saveDietsToDb,
     saveCuisinesToDb,
 };
