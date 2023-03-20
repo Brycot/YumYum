@@ -17,24 +17,26 @@ import {
 } from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
-
+const instance = axios.create({
+    baseURL: 'https://yumyum-production.up.railway.app',
+});
 // actions gets
 export const getAllRecipes = () => async (dispatch) => {
     dispatch({ type: IS_LOADING });
-    const { data } = await axios('http://localhost:3001/recipes');
+    const { data } = await instance('/recipes');
     dispatch({ type: GET_RECIPES, payload: data });
 };
 export const getAllCuisines = () => async (dispatch) => {
-    const { data } = await axios('http://localhost:3001/cuisines');
+    const { data } = await instance('/cuisines');
     dispatch({ type: GET_CUISINES, payload: data });
 };
 export const getAllDiets = () => async (dispatch) => {
-    const { data } = await axios('http://localhost:3001/diets');
+    const { data } = await instance('/diets');
     dispatch({ type: GET_DIETS, payload: data });
 };
 export const getRecipeDetail = (id) => async (dispatch) => {
     dispatch({ type: IS_LOADING });
-    const { data } = await axios(`http://localhost:3001/recipes/${id}`);
+    const { data } = await instance(`/recipes/${id}`);
     dispatch({ type: GET_RECIPE_DETAIL, payload: data });
 };
 
@@ -61,7 +63,7 @@ export const deleteFilters = () => (dispatch) => {
 export const createRecipe = (recipe, stepsObj) => async (dispatch) => {
     const steps = Object.values(stepsObj);
     dispatch({ type: IS_LOADING });
-    const response = await axios.post('http://localhost:3001/recipes', {
+    const response = await instance.post('/recipes', {
         ...recipe,
         steps,
     });
@@ -73,8 +75,6 @@ export const createRecipe = (recipe, stepsObj) => async (dispatch) => {
 
 export const searchRecipe = (recipe) => async (dispatch) => {
     dispatch({ type: IS_LOADING });
-    const { data } = await axios(
-        `http://localhost:3001/recipes?name=${recipe}`
-    );
+    const { data } = await instance(`/recipes?name=${recipe}`);
     dispatch({ type: SEARCH_RECIPE, payload: data });
 };
