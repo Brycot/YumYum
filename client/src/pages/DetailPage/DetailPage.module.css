@@ -204,6 +204,23 @@
     );
 }
 
+.buttonDelete {
+    font-size: 1.4rem;
+    color: #ffffff;
+    outline: 0;
+    border: 0;
+    border-radius: 20px;
+    background-color: #ea7c69;
+}
+.buttonDelete:hover {
+    filter: drop-shadow(0px 0px 10px #ea7c6994);
+    transition: all 0.2s ease;
+}
+.buttonDelete:active {
+    transform: scale(0.9);
+    transition: all 0.2s ease;
+}
+
 @media (max-width: 1280px) {
     .title {
         width: 500px;

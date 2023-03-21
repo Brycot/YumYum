@@ -14,9 +14,11 @@ import {
     TOGGLE_ERROR,
     SEARCH_RECIPE,
     GET_SORT_FROM,
+    DELETE_RECIPE,
 } from './actions-types';
 
 // Aca deben declarar las variables donde tengan el action types.
+// http://localhost:3001
 const instance = axios.create({
     baseURL: 'https://yumyum-production.up.railway.app',
 });
@@ -68,13 +70,19 @@ export const createRecipe = (recipe, stepsObj) => async (dispatch) => {
         steps,
     });
     if (response.status !== 201) {
-        dispatch({ type: TOGGLE_ERROR, payload: 'No se creo la receta' });
+        dispatch({ type: TOGGLE_ERROR, payload: 'Dont Create recipe' });
     }
     dispatch({ type: CREATE_RECIPE, payload: recipe });
+};
+
+export const deleteRecipe = (recipeId) => async (dispatch) => {
+    dispatch({ type: IS_LOADING });
+    const { data } = await instance.delete(`/recipes/${recipeId}`);
+    dispatch({ type: DELETE_RECIPE });
 };
 
 export const searchRecipe = (recipe) => async (dispatch) => {
     dispatch({ type: IS_LOADING });
     const { data } = await instance(`/recipes?name=${recipe}`);
-    dispatch({ type: SEARCH_RECIPE, payload: data });
+    dispatch({ type: SEARCH_RECIPE, payload: 'Recipe successfully deleted' });
 };

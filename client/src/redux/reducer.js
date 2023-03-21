@@ -14,6 +14,7 @@ import {
     CLOSE_MODAL,
     SEARCH_RECIPE,
     GET_SORT_FROM,
+    DELETE_RECIPE,
 } from './actions-types';
 
 const initialState = {
@@ -24,8 +25,8 @@ const initialState = {
     cuisines: [],
     onCreate: false,
     onLoading: true,
-    onError: '',
     created: false,
+    deleted: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -159,11 +160,17 @@ const rootReducer = (state = initialState, action) => {
                 onLoading: false,
                 created: true,
             };
+        case DELETE_RECIPE:
+            return {
+                ...state,
+                onLoading: false,
+                deleted: true,
+            };
         case CLOSE_MODAL:
             return {
                 ...state,
-                onError: '',
                 created: false,
+                deleted: false,
             };
         case SEARCH_RECIPE:
             return {

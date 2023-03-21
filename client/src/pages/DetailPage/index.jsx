@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecipeDetail } from '../../redux/actions';
-
+import { deleteRecipe } from '../../redux/actions';
 import { LoadingGlobal, Navbar } from '../../components';
 
 import styles from './DetailPage.module.css';
 
 export const DetailPage = () => {
+    const history = useHistory();
     const { recipeId } = useParams();
     const dispatch = useDispatch();
     const {
@@ -20,6 +21,8 @@ export const DetailPage = () => {
         readyInMinutes,
         pricePerServing,
         healthScore,
+        db,
+        id,
     } = useSelector((state) => state?.recipe);
     const onLoading = useSelector((state) => state.onLoading);
     const ingredients = steps
@@ -36,6 +39,10 @@ export const DetailPage = () => {
         ?.map((diet) => diet.charAt(0).toUpperCase() + diet.slice(1))
         .join(' - ');
 
+    const onDelete = () => {
+        history.push('/home');
+        dispatch(deleteRecipe(id));
+    };
     useEffect(() => {
         dispatch(getRecipeDetail(recipeId));
     }, []);
@@ -53,6 +60,7 @@ export const DetailPage = () => {
                     <>
                         <section className={styles.titleContainer}>
                             <img src={image} alt="" />
+
                             <div className={styles.title}>
                                 <h1>{title}</h1>
                             </div>
@@ -217,6 +225,14 @@ export const DetailPage = () => {
                                             </>
                                         )}
                                     </div>
+                                    {db && (
+                                        <button
+                                            onClick={onDelete}
+                                            className={styles.buttonDelete}
+                                        >
+                                            Delete Recipe
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </section>
