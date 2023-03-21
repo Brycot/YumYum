@@ -57,9 +57,23 @@ const recipesPost = async (req = request, res = response) => {
         res.status(400).json({ error: error.message });
     }
 };
+const recipesDelete = async (req = request, res = response) => {
+    const { id } = req.params;
 
+    try {
+        const recipeToDelete = await Recipe.findByPk(id);
+        await recipeToDelete.destroy();
+        res.status(200).json({
+            msg: 'Recipe deleted succesfull',
+            recipeDeleted: recipeToDelete,
+        });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 module.exports = {
     recipesGet,
     recipesGetbyId,
     recipesPost,
+    recipesDelete,
 };
