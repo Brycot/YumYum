@@ -3,7 +3,6 @@ const { Recipe, Diet } = require('../db');
 
 const getRecipesDb = async () => {
     const recipes = await Recipe.findAll();
-
     const recipesWithDiets = await Promise.all(
         recipes.map(async (recipe) => {
             const diets = await recipe.getDiets();

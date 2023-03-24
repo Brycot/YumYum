@@ -21,6 +21,7 @@ import { Footer } from '../../components/Footer';
 export const HomePage = () => {
     const dispatch = useDispatch();
 
+    const allRecipes = useSelector((state) => state.allRecipes);
     const filteredRecipes = useSelector((state) => state.filteredRecipes);
     const onCreate = useSelector((state) => state.onCreate);
     const created = useSelector((state) => state.created);
@@ -30,7 +31,9 @@ export const HomePage = () => {
         usePagination(9);
 
     useEffect(() => {
-        dispatch(getAllRecipes());
+        if (allRecipes.length < 1) {
+            dispatch(getAllRecipes());
+        }
     }, []);
     return (
         <main className={styles.main}>
