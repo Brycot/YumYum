@@ -14,8 +14,8 @@ export const SearchBar = () => {
     const { search, onInputChange } = useForm(formData);
 
     const onSubmit = (event) => {
-        dispatch(searchRecipe(search));
         event.preventDefault();
+        dispatch(searchRecipe(search.toLowerCase()));
     };
     return (
         <form onSubmit={onSubmit} className={styles.form}>

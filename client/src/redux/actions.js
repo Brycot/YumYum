@@ -84,5 +84,5 @@ export const deleteRecipe = (recipeId) => async (dispatch) => {
 export const searchRecipe = (recipe) => async (dispatch) => {
     dispatch({ type: IS_LOADING });
     const { data } = await instance(`/recipes?name=${recipe}`);
-    dispatch({ type: SEARCH_RECIPE, payload: 'Recipe successfully deleted' });
+    dispatch({ type: SEARCH_RECIPE, payload: data });
 };
