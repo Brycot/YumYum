@@ -293,20 +293,25 @@ export const FormCreate = () => {
                         </select>
                         <ul className={styles.selectedDietContainer}>
                             {dietsState.length >= 1 &&
-                                dietsState.map((diet) => (
-                                    <li key={diet}>
-                                        <p>{diet}</p>
-                                        <button
-                                            name="diets"
-                                            type="button"
-                                            onClick={onSelectDelete}
-                                            value={diet}
-                                            className={styles.deleteDiet}
-                                        >
-                                            X
-                                        </button>
-                                    </li>
-                                ))}
+                                dietsState.map((diet) => {
+                                    const { name } = diets.find((element) => {
+                                        return Number(diet) === element.id;
+                                    });
+                                    return (
+                                        <li key={diet}>
+                                            <p>{name}</p>
+                                            <button
+                                                name="diets"
+                                                type="button"
+                                                onClick={onSelectDelete}
+                                                value={diet}
+                                                className={styles.deleteDiet}
+                                            >
+                                                X
+                                            </button>
+                                        </li>
+                                    );
+                                })}
                         </ul>
                         {!!dietsValid && submited && (
                             <p className={styles.errorText}>{dietsValid}</p>
