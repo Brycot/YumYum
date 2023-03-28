@@ -3,7 +3,7 @@ import { useFilters } from '../../hooks';
 
 import styles from './Filters.module.css';
 
-export const Filters = () => {
+export const Filters = ({ resetPage }) => {
     const {
         cuisines,
         diets,
@@ -13,8 +13,7 @@ export const Filters = () => {
         handleSortByScore,
         handleDeleteFilters,
         handleSortByCreated,
-    } = useFilters();
-
+    } = useFilters(resetPage);
     return (
         <section className={styles.filtersContainer}>
             <div className={styles.filterContainer}>

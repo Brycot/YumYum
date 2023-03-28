@@ -13,12 +13,15 @@ export const usePagination = (perPage) => {
     const previousPage = () => {
         setCurrentPage(currentPage - 1);
     };
-
+    const resetPage = () => {
+        setCurrentPage(1);
+    };
     return {
         currentPage,
         nextPage,
         previousPage,
         itemsPerPage,
         maxPages,
+        resetPage
     };
 };

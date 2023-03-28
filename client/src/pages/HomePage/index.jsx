@@ -27,8 +27,14 @@ export const HomePage = () => {
     const created = useSelector((state) => state.created);
     const onLoading = useSelector((state) => state.onLoading);
     const deleted = useSelector((state) => state.deleted);
-    const { currentPage, nextPage, previousPage, maxPages, itemsPerPage } =
-        usePagination(9);
+    const {
+        currentPage,
+        nextPage,
+        previousPage,
+        maxPages,
+        itemsPerPage,
+        resetPage,
+    } = usePagination(9);
 
     useEffect(() => {
         if (allRecipes.length < 1) {
@@ -38,7 +44,7 @@ export const HomePage = () => {
     return (
         <main className={styles.main}>
             <Header />
-            <Filters />
+            <Filters resetPage={resetPage} />
             <Browser>
                 <SearchBar />
                 <CreateButton />

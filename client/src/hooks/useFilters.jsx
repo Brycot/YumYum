@@ -11,28 +11,33 @@ import {
     sortByScore,
 } from '../redux/actions';
 
-export const useFilters = () => {
+export const useFilters = (resetPage) => {
     const dispatch = useDispatch();
     const cuisines = useSelector((state) => state?.cuisines);
     const diets = useSelector((state) => state?.diets);
 
     const handleSort = (event) => {
+        resetPage(1);
         const selectedValue = event.target.value;
         dispatch(sortByName(selectedValue));
     };
     const handleSortByCuisine = (event) => {
+        resetPage(1);
         const selectedValue = event.target.value;
         dispatch(sortByCuisine(selectedValue));
     };
     const handleSortByDiet = (event) => {
+        resetPage(1);
         const selectedValue = event.target.value;
         dispatch(sortByDiet(selectedValue));
     };
     const handleSortByScore = (event) => {
+        resetPage(1);
         const selectedValue = event.target.value;
         dispatch(sortByScore(selectedValue));
     };
     const handleSortByCreated = (event) => {
+        resetPage(1);
         const selectedValue = event.target.value;
         dispatch(sortByCreated(selectedValue));
     };
