@@ -10,3 +10,19 @@
         'filters recipes'
         'footer footer';
 }
+
+@media (max-width: 900px) {
+    .main {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 600px 200px 70px 1fr 40px;
+        grid-template-areas:
+            'header'
+            'filters'
+            'browser'
+            'recipes'
+            'footer';
+    }
+}
