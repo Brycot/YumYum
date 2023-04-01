@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -12,6 +13,7 @@ import {
 } from '../redux/actions';
 
 export const useFilters = (resetPage) => {
+    const [openFilters, setOpenFilters] = useState(false);
     const dispatch = useDispatch();
     const cuisines = useSelector((state) => state?.cuisines);
     const diets = useSelector((state) => state?.diets);
@@ -41,7 +43,9 @@ export const useFilters = (resetPage) => {
         const selectedValue = event.target.value;
         dispatch(sortByCreated(selectedValue));
     };
-
+    const toggleFilters = () => {
+        setOpenFilters(!openFilters);
+    };
     const handleDeleteFilters = () => {
         dispatch(deleteFilters());
         document.getElementById('sort').value = 'sort';
@@ -64,5 +68,7 @@ export const useFilters = (resetPage) => {
         handleSortByScore,
         handleDeleteFilters,
         handleSortByCreated,
+        toggleFilters,
+        openFilters,
     };
 };

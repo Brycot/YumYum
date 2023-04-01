@@ -13,10 +13,15 @@ export const Filters = ({ resetPage }) => {
         handleSortByScore,
         handleDeleteFilters,
         handleSortByCreated,
+        openFilters,
+        toggleFilters
     } = useFilters(resetPage);
     return (
         <section className={styles.filtersContainer}>
-            <div className={styles.container}>
+            <button onClick={toggleFilters} className={styles.buttonOpen} type="button">
+                Filters
+            </button>
+            <div className={openFilters ? styles.containerOpen : styles.container}>
                 <div className={styles.filterContainer}>
                     <label className={styles.label} htmlFor="sort">
                         Sort

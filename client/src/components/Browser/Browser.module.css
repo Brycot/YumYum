@@ -8,3 +8,12 @@
     grid-template-columns: 1fr 200px 200px;
     gap: 16px;
 }
+@media (max-width: 900px) {
+    .browser {
+        width: 100vw;
+        height: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
